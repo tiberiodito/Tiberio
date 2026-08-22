@@ -18,6 +18,8 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { OFFICIAL_CHECKOUT_URL } from '../data/pricingConfig';
+import cooudProductCoverImg from '../assets/images/cooud_product_cover_1787415556963.jpg';
+import checkoutBundleBannerImg from '../assets/images/checkout_bundle_banner_1787417162329.jpg';
 
 interface ProducerControlModalProps {
   isOpen: boolean;
@@ -522,7 +524,7 @@ export const ProducerControlModal: React.FC<ProducerControlModalProps> = ({
                     <span>Capa do Produto (Box 3D):</span>
                   </label>
                   <a
-                    href="/src/assets/images/cooud_product_cover_1787415556963.jpg"
+                    href={cooudProductCoverImg}
                     download="capa-produto-fiesta-lista.jpg"
                     className="text-[10px] font-bold text-white bg-pink-600 hover:bg-pink-700 px-2.5 py-1 rounded-full flex items-center gap-1 transition shadow-xs"
                   >
@@ -532,12 +534,12 @@ export const ProducerControlModal: React.FC<ProducerControlModalProps> = ({
 
                 <div className="relative rounded-xl overflow-hidden border-2 border-pink-300 shadow-sm group">
                   <img
-                    src="/src/assets/images/cooud_product_cover_1787415556963.jpg"
+                    src={cooudProductCoverImg}
                     alt="Capa do Produto Mega Pack Fiesta Lista"
-                    className="w-full h-36 object-cover object-center"
+                    className="w-full h-44 object-contain bg-white"
                   />
                   <a
-                    href="/src/assets/images/cooud_product_cover_1787415556963.jpg"
+                    href={cooudProductCoverImg}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="absolute bottom-2 right-2 bg-slate-900/80 hover:bg-slate-900 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 backdrop-blur-xs transition"
@@ -556,7 +558,7 @@ export const ProducerControlModal: React.FC<ProducerControlModalProps> = ({
                     <span>Banner Visual de Checkout (Tudo Incluso):</span>
                   </label>
                   <a
-                    href="/src/assets/images/checkout_bundle_banner_1787417162329.jpg"
+                    href={checkoutBundleBannerImg}
                     download="banner-checkout-bundle.jpg"
                     className="text-[10px] font-bold text-white bg-purple-600 hover:bg-purple-700 px-2.5 py-1 rounded-full flex items-center gap-1 transition shadow-xs"
                   >
@@ -566,12 +568,12 @@ export const ProducerControlModal: React.FC<ProducerControlModalProps> = ({
 
                 <div className="relative rounded-xl overflow-hidden border-2 border-purple-300 shadow-sm group">
                   <img
-                    src="/src/assets/images/checkout_bundle_banner_1787417162329.jpg"
+                    src={checkoutBundleBannerImg}
                     alt="Banner Visual de Checkout do Mega Pack"
-                    className="w-full h-36 object-cover object-center"
+                    className="w-full h-44 object-contain bg-white"
                   />
                   <a
-                    href="/src/assets/images/checkout_bundle_banner_1787417162329.jpg"
+                    href={checkoutBundleBannerImg}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="absolute bottom-2 right-2 bg-slate-900/80 hover:bg-slate-900 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 backdrop-blur-xs transition"
