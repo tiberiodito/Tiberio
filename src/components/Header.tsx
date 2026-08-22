@@ -13,7 +13,10 @@ import {
   Gift,
   FileText,
   DollarSign,
-  X
+  X,
+  KeyRound,
+  Unlock,
+  Lock
 } from 'lucide-react';
 import logoImg from '../assets/images/pack_fiesta_logo_vector_1787315893546.jpg';
 
@@ -31,6 +34,8 @@ interface HeaderProps {
   onOpenDeliveryTool: () => void;
   onOpenPrintableGuide: () => void;
   onOpenSalesPage?: () => void;
+  onOpenVipExpansions?: () => void;
+  isVipUnlocked?: boolean;
   language: 'es' | 'pt';
   onToggleLanguage: () => void;
   isCreatorMode: boolean;
@@ -51,6 +56,8 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenDeliveryTool,
   onOpenPrintableGuide,
   onOpenSalesPage,
+  onOpenVipExpansions,
+  isVipUnlocked = false,
   language,
   onToggleLanguage,
   isCreatorMode,
@@ -195,6 +202,36 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Desktop Right Quick Actions (Sales Page, Favorites & Creator Tools) */}
           <div className="hidden lg:flex items-center gap-2 shrink-0">
+            {/* VIP Expansions Button */}
+            {onOpenVipExpansions && (
+              <button
+                id="header-vip-expansions-btn"
+                onClick={onOpenVipExpansions}
+                className={`flex items-center gap-1.5 px-3.5 py-2 text-xs font-black rounded-2xl transition cursor-pointer active:scale-95 shadow-md ${
+                  isVipUnlocked
+                    ? 'bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 text-slate-950 border-2 border-amber-400 shadow-amber-200'
+                    : 'bg-gradient-to-r from-purple-800 via-indigo-800 to-purple-900 text-white border-2 border-purple-400/80 shadow-purple-200 hover:scale-[1.02]'
+                }`}
+                title={isEs ? 'Módulos VIP & Expansiones (Order Bumps)' : 'Módulos VIP & Expansões'}
+              >
+                {isVipUnlocked ? (
+                  <Crown className="w-4 h-4 fill-slate-950 text-slate-950" />
+                ) : (
+                  <KeyRound className="w-4 h-4 text-amber-300" />
+                )}
+                <span className="font-extrabold whitespace-nowrap">
+                  {isVipUnlocked 
+                    ? (isEs ? '💎 Módulos VIP' : '💎 Módulos VIP')
+                    : (isEs ? '💎 Expansiones VIP' : '💎 Expansões VIP')}
+                </span>
+                <span className={`text-[10px] font-black px-1.5 py-0.2 rounded-full ${
+                  isVipUnlocked ? 'bg-slate-950 text-amber-300' : 'bg-amber-400 text-slate-950'
+                }`}>
+                  {isVipUnlocked ? '✓' : '4 Packs'}
+                </span>
+              </button>
+            )}
+
             {/* Sales Page Switcher Button */}
             {onOpenSalesPage && (
               <button
@@ -265,6 +302,23 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Mobile & Tablet Right Controls (Language & Favorites Quick Access) */}
           <div className="flex lg:hidden items-center gap-1.5 shrink-0">
+            {/* Mobile VIP Expansions Button */}
+            {onOpenVipExpansions && (
+              <button
+                id="mobile-header-vip-btn"
+                onClick={onOpenVipExpansions}
+                className={`flex items-center gap-1 px-2.5 py-2 rounded-xl border-2 transition relative cursor-pointer active:scale-95 ${
+                  isVipUnlocked
+                    ? 'bg-amber-400 text-slate-950 border-amber-500 font-black'
+                    : 'bg-purple-900 text-white border-purple-400 font-bold'
+                }`}
+                title={isEs ? 'Módulos VIP' : 'Módulos VIP'}
+              >
+                <Crown className={`w-3.5 h-3.5 shrink-0 ${isVipUnlocked ? 'fill-slate-950' : 'text-amber-300'}`} />
+                <span className="text-[10px] font-black">{isVipUnlocked ? 'VIP ✓' : 'VIP'}</span>
+              </button>
+            )}
+
             {/* Mobile Favorites Toggle */}
             <button
               id="mobile-header-favorites-btn"

@@ -13,9 +13,12 @@ import { PartyPlannerModal } from './PartyPlannerModal';
 import { VideoTutorialsModal } from './VideoTutorialsModal';
 import { PrintableGuideModal } from './PrintableGuideModal';
 import { DeliveryGeneratorModal } from './DeliveryGeneratorModal';
+import { VipExpansionsSection } from './VipExpansionsSection';
+import { VipUnlockModal } from './VipUnlockModal';
+import { VIP_SECRET_KEY } from '../data/vipBumpsData';
 import { RESOURCES_DATA } from '../data/resources';
 import { ResourceItem } from '../types';
-import { ArrowLeft, Sparkles, CheckCircle2, ShieldCheck, Gift } from 'lucide-react';
+import { ArrowLeft, Sparkles, CheckCircle2, ShieldCheck, Gift, KeyRound, Crown } from 'lucide-react';
 import { getCooudCheckoutUrl } from '../data/pricingConfig';
 
 interface DeliverablePortalViewProps {
@@ -50,6 +53,37 @@ export const DeliverablePortalView: React.FC<DeliverablePortalViewProps> = ({
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [isPrintGuideModalOpen, setIsPrintGuideModalOpen] = useState(false);
   const [isDeliveryModalOpen, setIsDeliveryModalOpen] = useState(false);
+
+  // VIP Expansions Unlock State (Key: claravip100k)
+  const [isVipUnlocked, setIsVipUnlocked] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const vipParam = urlParams.get('vip')?.toLowerCase();
+      const keyParam = urlParams.get('key')?.toLowerCase();
+      const bumpParam = urlParams.get('bump')?.toLowerCase();
+      const orderParam = urlParams.get('orderbump')?.toLowerCase();
+      
+      const isParamVip = 
+        vipParam === VIP_SECRET_KEY.toLowerCase() ||
+        keyParam === VIP_SECRET_KEY.toLowerCase() ||
+        vipParam === '1' ||
+        vipParam === 'true' ||
+        bumpParam === '1' ||
+        bumpParam === 'true' ||
+        orderParam === '1' ||
+        orderParam === 'true';
+
+      if (isParamVip) {
+        localStorage.setItem('pfl_vip_unlocked', 'true');
+        return true;
+      }
+      return localStorage.getItem('pfl_vip_unlocked') === 'true';
+    } catch {
+      return false;
+    }
+  });
+  const [isVipModalOpen, setIsVipModalOpen] = useState(false);
 
   // Search & Catalog Filter State
   const [searchQuery, setSearchQuery] = useState('');
@@ -269,6 +303,15 @@ export const DeliverablePortalView: React.FC<DeliverablePortalViewProps> = ({
     window.location.href = getCooudCheckoutUrl();
   };
 
+  const handleOpenVipExpansions = () => {
+    const el = document.getElementById('vip-expansions-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      setIsVipModalOpen(true);
+    }
+  };
+
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#fef7f9] text-slate-800 font-sans selection:bg-pink-300 selection:text-pink-900 animate-in fade-in duration-300 pb-20">
       
@@ -287,9 +330,16 @@ export const DeliverablePortalView: React.FC<DeliverablePortalViewProps> = ({
             </span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-1 text-[11px] text-pink-200 font-medium shrink-0">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-            <span>{isEs ? 'Acceso de por vida' : 'Acesso vitalício'}</span>
+          <div className="hidden sm:flex items-center gap-2 text-[11px] font-medium text-pink-200">
+            <button
+              onClick={handleOpenVipExpansions}
+              className="inline-flex items-center gap-1 bg-amber-400/20 hover:bg-amber-400/40 text-amber-300 border border-amber-400/40 px-2.5 py-0.5 rounded-full cursor-pointer transition text-[11px] font-black"
+            >
+              <Crown className="w-3 h-3 fill-amber-300" />
+              <span>{isVipUnlocked ? (isEs ? '💎 Módulos VIP Activos' : '💎 Módulos VIP Ativos') : (isEs ? '💎 Expansiones VIP' : '💎 Expansões VIP')}</span>
+            </button>
+            <span className="hidden md:inline">|</span>
+            <span className="hidden md:inline">{isEs ? 'Soporte: info@clarisideas.com' : 'Suporte: info@clarisideas.com'}</span>
           </div>
         </div>
       )}
@@ -353,6 +403,8 @@ export const DeliverablePortalView: React.FC<DeliverablePortalViewProps> = ({
         onOpenAIAssistant={handleOpenAIAssistant}
         onOpenDeliveryTool={handleOpenDeliveryTool}
         onOpenPrintableGuide={handleOpenPrintableGuide}
+        onOpenVipExpansions={handleOpenVipExpansions}
+        isVipUnlocked={isVipUnlocked}
         language={language}
         onToggleLanguage={onToggleLanguage}
         isCreatorMode={isProducerUnlocked || isCreatorMode}
@@ -383,7 +435,14 @@ export const DeliverablePortalView: React.FC<DeliverablePortalViewProps> = ({
         onOpenVideos={handleOpenVideos}
       />
 
-      {/* 5. Main Resources & Bonus Catalog (100% UNLOCKED FOR BUYERS) */}
+      {/* 5. VIP Expansions Section (4 Order Bumps - Unlocked with Key or Order Bump) */}
+      <VipExpansionsSection
+        language={language}
+        isUnlocked={isVipUnlocked}
+        onOpenUnlockModal={() => setIsVipModalOpen(true)}
+      />
+
+      {/* 6. Main Resources & Bonus Catalog (100% UNLOCKED FOR BUYERS) */}
       <ResourceCatalog
         resources={RESOURCES_DATA}
         searchQuery={searchQuery}
@@ -399,7 +458,7 @@ export const DeliverablePortalView: React.FC<DeliverablePortalViewProps> = ({
         onTriggerLockModal={handleTriggerLockResource}
       />
 
-      {/* 6. Footer */}
+      {/* 7. Footer */}
       <Footer
         language={language}
         onOpenVideos={handleOpenVideos}
@@ -407,6 +466,22 @@ export const DeliverablePortalView: React.FC<DeliverablePortalViewProps> = ({
         onOpenPricingCalculator={handleOpenPricingCalculator}
         onOpenPlanner={handleOpenPlanner}
         onOpenProducerAccess={onOpenProducerAccess}
+      />
+
+      {/* VIP Unlock Modal */}
+      <VipUnlockModal
+        isOpen={isVipModalOpen}
+        onClose={() => setIsVipModalOpen(false)}
+        language={language}
+        onSuccessUnlock={() => {
+          setIsVipUnlocked(true);
+          const el = document.getElementById('vip-expansions-section');
+          if (el) {
+            setTimeout(() => {
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+          }
+        }}
       />
 
       {/* VIP Interactive Modals */}
