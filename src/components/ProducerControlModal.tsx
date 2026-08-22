@@ -20,9 +20,9 @@ import {
 import { OFFICIAL_CHECKOUT_URL } from '../data/pricingConfig';
 import cooudProductCoverImg from '../assets/images/cooud_product_cover_1787415556963.jpg';
 import checkoutBundleBannerImg from '../assets/images/checkout_bundle_banner_1787417162329.jpg';
-import ad1 from '../assets/images/ad_creative_bundle_1787429636410.jpg';
+import ad1 from '../assets/images/ad_creative_bundle_premium_1787432258750.jpg';
 import ad2 from '../assets/images/ad_creative_emprende_1787429654281.jpg';
-import ad3 from '../assets/images/ad_creative_canva_1787429664813.jpg';
+import ad3 from '../assets/images/ad_creative_canva_mobile_hd_1787432270466.jpg';
 
 interface ProducerControlModalProps {
   isOpen: boolean;
