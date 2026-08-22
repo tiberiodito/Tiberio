@@ -452,6 +452,10 @@ export default function App() {
         isUnlocked={isProducerUnlocked}
         onUnlockSuccess={handleUnlockProducer}
         onLock={handleLockProducer}
+        onOpenAdsGallery={() => {
+          setIsProducerModalOpen(false);
+          setIsAdsModalOpen(true);
+        }}
       />
     </div>
   );

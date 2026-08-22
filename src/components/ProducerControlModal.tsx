@@ -36,6 +36,7 @@ interface ProducerControlModalProps {
   isUnlocked: boolean;
   onUnlockSuccess: () => void;
   onLock: () => void;
+  onOpenAdsGallery?: () => void;
 }
 
 const PRODUCER_PIN = '3623';
@@ -52,6 +53,7 @@ export const ProducerControlModal: React.FC<ProducerControlModalProps> = ({
   isUnlocked,
   onUnlockSuccess,
   onLock,
+  onOpenAdsGallery,
 }) => {
   const [pinInput, setPinInput] = useState('');
   const [pinError, setPinError] = useState(false);
@@ -588,74 +590,125 @@ export const ProducerControlModal: React.FC<ProducerControlModalProps> = ({
               </div>
 
               {/* Seção de 3 Criativos para Facebook Ads */}
-              <div className="p-3.5 bg-gradient-to-br from-pink-50 via-rose-50 to-purple-50 rounded-2xl border-2 border-pink-300 space-y-3">
-                <div className="flex items-center justify-between">
-                  <label className="text-xs font-black text-pink-950 uppercase tracking-wider flex items-center gap-1.5">
-                    <span>🔥</span>
-                    <span>3 Criativos Oficiais para Facebook & Instagram Ads:</span>
-                  </label>
-                  <span className="text-[10px] bg-pink-600 text-white font-extrabold px-2 py-0.5 rounded-full">
-                    Alta Conversão
-                  </span>
+              <div className="p-4 bg-gradient-to-br from-pink-50 via-rose-50 to-purple-50 rounded-2xl border-2 border-pink-300 space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <label className="text-xs font-black text-pink-950 uppercase tracking-wider flex items-center gap-1.5">
+                      <span>🔥</span>
+                      <span>3 Criativos Oficiais para Facebook & Instagram Ads:</span>
+                    </label>
+                    <p className="text-[11px] text-pink-700 font-medium mt-0.5">
+                      Clique em qualquer imagem para abrir a galeria interativa com textos e download em 1 clique.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (onOpenAdsGallery) {
+                        onOpenAdsGallery();
+                      } else {
+                        window.location.href = '/?ads=1';
+                      }
+                    }}
+                    className="shrink-0 bg-pink-600 hover:bg-pink-700 text-white text-[11px] font-black px-3 py-1.5 rounded-xl shadow-sm flex items-center justify-center gap-1 cursor-pointer transition hover:scale-105"
+                  >
+                    <span>🚀 Abrir Galeria Completa</span>
+                  </button>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {/* Criativo 1 */}
-                  <div className="bg-white rounded-xl p-2.5 border border-pink-200 flex flex-col justify-between shadow-2xs">
+                  <div 
+                    onClick={() => {
+                      if (onOpenAdsGallery) {
+                        onOpenAdsGallery();
+                      } else {
+                        window.location.href = '/?ads=1';
+                      }
+                    }}
+                    className="bg-white rounded-xl p-2.5 border border-pink-200 flex flex-col justify-between shadow-2xs cursor-pointer hover:border-pink-400 hover:shadow-md transition group"
+                  >
                     <div>
                       <span className="text-[10px] font-black text-pink-700 bg-pink-50 px-2 py-0.5 rounded-md inline-block mb-1">
                         1. Mega Pack Completo
                       </span>
-                      <div className="aspect-square rounded-lg overflow-hidden border border-slate-200 mb-2">
-                        <img src={ad1} alt="Criativo 1 Mega Pack" className="w-full h-full object-cover" />
+                      <div className="aspect-square rounded-lg overflow-hidden border border-slate-200 mb-2 relative">
+                        <img src={ad1} alt="Criativo 1 Mega Pack" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] font-bold">
+                          Ver & Baixar
+                        </div>
                       </div>
                     </div>
-                    <a
-                      href={ad1}
-                      download="criativo-1-megapack.jpg"
-                      className="w-full py-1.5 bg-pink-600 hover:bg-pink-700 text-white rounded-lg text-[11px] font-bold text-center flex items-center justify-center gap-1 transition shadow-xs"
-                    >
-                      <span>⬇️ Baixar Imagem</span>
-                    </a>
+                    <div className="w-full py-1.5 bg-pink-600 group-hover:bg-pink-700 text-white rounded-lg text-[11px] font-bold text-center flex items-center justify-center gap-1 transition shadow-xs">
+                      <span>🎨 Ver Anúncio & Baixar</span>
+                    </div>
                   </div>
 
                   {/* Criativo 2 */}
-                  <div className="bg-white rounded-xl p-2.5 border border-purple-200 flex flex-col justify-between shadow-2xs">
+                  <div 
+                    onClick={() => {
+                      if (onOpenAdsGallery) {
+                        onOpenAdsGallery();
+                      } else {
+                        window.location.href = '/?ads=1';
+                      }
+                    }}
+                    className="bg-white rounded-xl p-2.5 border border-purple-200 flex flex-col justify-between shadow-2xs cursor-pointer hover:border-purple-400 hover:shadow-md transition group"
+                  >
                     <div>
                       <span className="text-[10px] font-black text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md inline-block mb-1">
                         2. Renda Extra / Empreenda
                       </span>
-                      <div className="aspect-square rounded-lg overflow-hidden border border-slate-200 mb-2">
-                        <img src={ad2} alt="Criativo 2 Empreenda" className="w-full h-full object-cover" />
+                      <div className="aspect-square rounded-lg overflow-hidden border border-slate-200 mb-2 relative">
+                        <img src={ad2} alt="Criativo 2 Empreenda" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] font-bold">
+                          Ver & Baixar
+                        </div>
                       </div>
                     </div>
-                    <a
-                      href={ad2}
-                      download="criativo-2-empreenda.jpg"
-                      className="w-full py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-[11px] font-bold text-center flex items-center justify-center gap-1 transition shadow-xs"
-                    >
-                      <span>⬇️ Baixar Imagem</span>
-                    </a>
+                    <div className="w-full py-1.5 bg-purple-600 group-hover:bg-purple-700 text-white rounded-lg text-[11px] font-bold text-center flex items-center justify-center gap-1 transition shadow-xs">
+                      <span>🎨 Ver Anúncio & Baixar</span>
+                    </div>
                   </div>
 
                   {/* Criativo 3 */}
-                  <div className="bg-white rounded-xl p-2.5 border border-rose-200 flex flex-col justify-between shadow-2xs">
+                  <div 
+                    onClick={() => {
+                      if (onOpenAdsGallery) {
+                        onOpenAdsGallery();
+                      } else {
+                        window.location.href = '/?ads=1';
+                      }
+                    }}
+                    className="bg-white rounded-xl p-2.5 border border-rose-200 flex flex-col justify-between shadow-2xs cursor-pointer hover:border-rose-400 hover:shadow-md transition group"
+                  >
                     <div>
                       <span className="text-[10px] font-black text-rose-700 bg-rose-50 px-2 py-0.5 rounded-md inline-block mb-1">
                         3. Fácil no Celular / Canva
                       </span>
-                      <div className="aspect-square rounded-lg overflow-hidden border border-slate-200 mb-2">
-                        <img src={ad3} alt="Criativo 3 Celular Canva" className="w-full h-full object-cover" />
+                      <div className="aspect-square rounded-lg overflow-hidden border border-slate-200 mb-2 relative">
+                        <img src={ad3} alt="Criativo 3 Celular Canva" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] font-bold">
+                          Ver & Baixar
+                        </div>
                       </div>
                     </div>
-                    <a
-                      href={ad3}
-                      download="criativo-3-facil-canva.jpg"
-                      className="w-full py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-[11px] font-bold text-center flex items-center justify-center gap-1 transition shadow-xs"
-                    >
-                      <span>⬇️ Baixar Imagem</span>
-                    </a>
+                    <div className="w-full py-1.5 bg-rose-600 group-hover:bg-rose-700 text-white rounded-lg text-[11px] font-bold text-center flex items-center justify-center gap-1 transition shadow-xs">
+                      <span>🎨 Ver Anúncio & Baixar</span>
+                    </div>
                   </div>
+                </div>
+
+                <div className="pt-1 text-center">
+                  <a
+                    href="https://packfiestalista.com/?ads=1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[11px] text-pink-600 hover:text-pink-800 font-bold underline inline-flex items-center gap-1"
+                  >
+                    <span>🔗 Link direto para a Central: https://packfiestalista.com/?ads=1</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
                 </div>
               </div>
             </div>
