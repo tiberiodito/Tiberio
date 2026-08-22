@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Download, Copy, Check, Sparkles, X, Eye, ExternalLink, Instagram, Facebook, Target, Flame, Lightbulb, Image as ImageIcon, Sparkle, UserCheck } from 'lucide-react';
+import { Download, Copy, Check, Sparkles, X, Eye, ExternalLink, Instagram, Facebook, Target, Flame, Lightbulb, Image as ImageIcon, Sparkle, UserCheck, LayoutTemplate } from 'lucide-react';
 import ad1 from '../assets/images/ad_creative_bundle_premium_1787432258750.jpg';
 import ad2 from '../assets/images/ad_creative_emprende_1787429654281.jpg';
 import ad3 from '../assets/images/ad_creative_canva_mobile_hd_1787432270466.jpg';
@@ -7,6 +7,7 @@ import ad3 from '../assets/images/ad_creative_canva_mobile_hd_1787432270466.jpg'
 import post1 from '../assets/images/post_table_decor_hd_1787437799423.jpg';
 import post2 from '../assets/images/post_craft_flatlay_hd_1787437817925.jpg';
 import post3 from '../assets/images/post_clara_creator_hd_1787437832862.jpg';
+import bannerFb from '../assets/images/banner_facebook_clara_maya_1787438244860.jpg';
 
 interface AdsGalleryModalProps {
   isOpen: boolean;
@@ -14,7 +15,7 @@ interface AdsGalleryModalProps {
 }
 
 export const AdsGalleryModal: React.FC<AdsGalleryModalProps> = ({ isOpen, onClose }) => {
-  const [activeTab, setActiveTab] = useState<'ads' | 'feed'>('ads');
+  const [activeTab, setActiveTab] = useState<'ads' | 'feed' | 'banner'>('ads');
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
@@ -146,7 +147,7 @@ export const AdsGalleryModal: React.FC<AdsGalleryModalProps> = ({ isOpen, onClos
         </div>
 
         {/* Tab Switcher */}
-        <div className="bg-white border-b border-slate-200 px-4 sm:px-6 pt-3 flex gap-2 sm:gap-4 shrink-0">
+        <div className="bg-white border-b border-slate-200 px-4 sm:px-6 pt-3 flex flex-wrap gap-2 sm:gap-4 shrink-0">
           <button
             onClick={() => setActiveTab('ads')}
             className={`pb-3 px-3 sm:px-4 font-black text-xs sm:text-sm flex items-center gap-2 border-b-2 transition-all cursor-pointer ${
@@ -156,7 +157,7 @@ export const AdsGalleryModal: React.FC<AdsGalleryModalProps> = ({ isOpen, onClos
             }`}
           >
             <Flame className="w-4 h-4 text-pink-500" />
-            <span>🔥 3 Criativos para Anúncios (Ads)</span>
+            <span>🔥 3 Criativos (Ads)</span>
           </button>
           <button
             onClick={() => setActiveTab('feed')}
@@ -167,13 +168,24 @@ export const AdsGalleryModal: React.FC<AdsGalleryModalProps> = ({ isOpen, onClos
             }`}
           >
             <ImageIcon className="w-4 h-4 text-purple-500" />
-            <span>📸 3 Posts de Aquecimento do Feed</span>
+            <span>📸 3 Posts do Feed</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('banner')}
+            className={`pb-3 px-3 sm:px-4 font-black text-xs sm:text-sm flex items-center gap-2 border-b-2 transition-all cursor-pointer ${
+              activeTab === 'banner'
+                ? 'border-indigo-600 text-indigo-600'
+                : 'border-transparent text-slate-500 hover:text-slate-800'
+            }`}
+          >
+            <LayoutTemplate className="w-4 h-4 text-indigo-500" />
+            <span>🖼️ Capa / Banner do Facebook</span>
           </button>
         </div>
 
         {/* Content Body */}
         <div className="p-4 sm:p-6 overflow-y-auto space-y-8 bg-slate-50">
-          {activeTab === 'ads' ? (
+          {activeTab === 'ads' && (
             <>
               <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-start gap-3 text-amber-900 text-xs sm:text-sm">
                 <Lightbulb className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
@@ -286,7 +298,9 @@ export const AdsGalleryModal: React.FC<AdsGalleryModalProps> = ({ isOpen, onClos
                 ))}
               </div>
             </>
-          ) : (
+          )}
+
+          {activeTab === 'feed' && (
             <>
               <div className="bg-purple-50 border border-purple-200 rounded-2xl p-4 flex items-start gap-3 text-purple-900 text-xs sm:text-sm">
                 <UserCheck className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
@@ -367,6 +381,58 @@ export const AdsGalleryModal: React.FC<AdsGalleryModalProps> = ({ isOpen, onClos
                     </div>
                   </div>
                 ))}
+              </div>
+            </>
+          )}
+
+          {activeTab === 'banner' && (
+            <>
+              <div className="bg-indigo-50 border border-indigo-200 rounded-2xl p-4 flex items-start gap-3 text-indigo-900 text-xs sm:text-sm">
+                <LayoutTemplate className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
+                <div>
+                  <strong>Capa Oficial para a Página do Facebook:</strong> Imagem dimensionada no formato ideal de banner (16:9 widescreen) com estética limpa, tons pastéis e papelaria 3D de alta qualidade para deixar o topo da página da Clara Maya 100% profissional.
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <span className="text-xs font-black px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-700">
+                      🖼️ Capa Panorâmica (Facebook Cover)
+                    </span>
+                    <h3 className="text-lg font-black text-slate-900 mt-2">
+                      Banner Oficial: Clara Maya | Papelería Creativa & Fiestas Infantiles
+                    </h3>
+                  </div>
+                  <button
+                    onClick={() => downloadImage(bannerFb, 'banner-facebook-clara-maya.jpg')}
+                    className="py-2.5 px-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md transition hover:scale-105 cursor-pointer shrink-0"
+                  >
+                    <Download className="w-4 h-4" /> Baixar Capa HD (16:9)
+                  </button>
+                </div>
+
+                {/* Banner Preview */}
+                <div className="relative group w-full aspect-video rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 shadow-inner">
+                  <img
+                    src={bannerFb}
+                    alt="Banner de Capa Facebook Clara Maya"
+                    className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+                    <button
+                      onClick={() => setPreviewImage(bannerFb)}
+                      className="px-4 py-2.5 bg-white text-slate-800 rounded-xl font-bold text-xs flex items-center gap-2 shadow-lg hover:bg-slate-50 transition cursor-pointer"
+                    >
+                      <Eye className="w-4 h-4 text-indigo-600" /> Ver Imagem Completa
+                    </button>
+                  </div>
+                </div>
+
+                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-600">
+                  <span>📐 <strong>Resolução:</strong> Alta Definição (16:9) adaptada perfeitamente para Desktop e Celular no Facebook.</span>
+                  <span className="text-emerald-700 font-bold">✨ Pronto para aplicar na página</span>
+                </div>
               </div>
             </>
           )}
