@@ -29,6 +29,7 @@ import { CheckoutModal } from './components/CheckoutModal';
 import { DeliverablePortalView } from './components/DeliverablePortalView';
 import { DemoLockModal, LockedItemInfo } from './components/DemoLockModal';
 import { ProducerControlModal } from './components/ProducerControlModal';
+import { AdsGalleryModal } from './components/AdsGalleryModal';
 import { getCooudCheckoutUrl } from './data/pricingConfig';
 
 const checkUrlMode = (): { isPortal: boolean; isDemo: boolean } => {
@@ -85,6 +86,7 @@ export default function App() {
   
   // Producer / Admin State (Protected with PIN 3623)
   const [isProducerModalOpen, setIsProducerModalOpen] = useState(false);
+  const [isAdsModalOpen, setIsAdsModalOpen] = useState(false);
   const [isProducerUnlocked, setIsProducerUnlocked] = useState<boolean>(() => {
     try {
       return sessionStorage.getItem('pfl_producer_auth') === 'true';
@@ -98,6 +100,17 @@ export default function App() {
     const syncFromUrl = () => {
       try {
         const urlParams = new URLSearchParams(window.location.search);
+        
+        // Ads check
+        if (
+          urlParams.get('ads') === '1' ||
+          urlParams.get('criativos') === '1' ||
+          urlParams.get('anuncios') === '1' ||
+          urlParams.get('view') === 'ads' ||
+          urlParams.get('view') === 'criativos'
+        ) {
+          setIsAdsModalOpen(true);
+        }
         
         // Language check
         const langParam = urlParams.get('lang');
@@ -366,8 +379,20 @@ export default function App() {
         <p>Página de alta conversión diseñada con fidelidad total al diseño original.</p>
         <p className="text-[10px] text-slate-400">Canva® es una marca registrada. Este kit incluye archivos compatibles 100% gratuitos.</p>
         
-        {/* Link Discreto de Acesso do Produtor */}
-        <div className="pt-2">
+        {/* Link Discreto de Acesso do Produtor & Criativos */}
+        <div className="pt-2 flex items-center justify-center gap-4">
+          <button
+            type="button"
+            onClick={() => setIsAdsModalOpen(true)}
+            className="text-[11px] text-pink-500 hover:text-pink-700 transition inline-flex items-center gap-1 cursor-pointer font-bold underline decoration-dotted"
+            title="Ver e Baixar Criativos para Facebook Ads"
+          >
+            <span>🎨</span>
+            <span>Criativos Facebook Ads</span>
+          </button>
+
+          <span className="text-slate-300">|</span>
+
           <button
             type="button"
             onClick={() => setIsProducerModalOpen(true)}
@@ -403,6 +428,12 @@ export default function App() {
         }}
         language={language}
         resourceItem={lockedToolInfo}
+      />
+
+      {/* Modal de Criativos para Facebook Ads */}
+      <AdsGalleryModal
+        isOpen={isAdsModalOpen}
+        onClose={() => setIsAdsModalOpen(false)}
       />
 
       {/* Modal de Controle do Produtor (Protegido por PIN 3623) */}

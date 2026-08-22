@@ -20,6 +20,9 @@ import {
 import { OFFICIAL_CHECKOUT_URL } from '../data/pricingConfig';
 import cooudProductCoverImg from '../assets/images/cooud_product_cover_1787415556963.jpg';
 import checkoutBundleBannerImg from '../assets/images/checkout_bundle_banner_1787417162329.jpg';
+import ad1 from '../assets/images/ad_creative_bundle_1787429636410.jpg';
+import ad2 from '../assets/images/ad_creative_emprende_1787429654281.jpg';
+import ad3 from '../assets/images/ad_creative_canva_1787429664813.jpg';
 
 interface ProducerControlModalProps {
   isOpen: boolean;
@@ -581,6 +584,78 @@ export const ProducerControlModal: React.FC<ProducerControlModalProps> = ({
                     <ExternalLink className="w-3.5 h-3.5" />
                     <span>Abrir em Tamanho Real</span>
                   </a>
+                </div>
+              </div>
+
+              {/* Seção de 3 Criativos para Facebook Ads */}
+              <div className="p-3.5 bg-gradient-to-br from-pink-50 via-rose-50 to-purple-50 rounded-2xl border-2 border-pink-300 space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-black text-pink-950 uppercase tracking-wider flex items-center gap-1.5">
+                    <span>🔥</span>
+                    <span>3 Criativos Oficiais para Facebook & Instagram Ads:</span>
+                  </label>
+                  <span className="text-[10px] bg-pink-600 text-white font-extrabold px-2 py-0.5 rounded-full">
+                    Alta Conversão
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {/* Criativo 1 */}
+                  <div className="bg-white rounded-xl p-2.5 border border-pink-200 flex flex-col justify-between shadow-2xs">
+                    <div>
+                      <span className="text-[10px] font-black text-pink-700 bg-pink-50 px-2 py-0.5 rounded-md inline-block mb-1">
+                        1. Mega Pack Completo
+                      </span>
+                      <div className="aspect-square rounded-lg overflow-hidden border border-slate-200 mb-2">
+                        <img src={ad1} alt="Criativo 1 Mega Pack" className="w-full h-full object-cover" />
+                      </div>
+                    </div>
+                    <a
+                      href={ad1}
+                      download="criativo-1-megapack.jpg"
+                      className="w-full py-1.5 bg-pink-600 hover:bg-pink-700 text-white rounded-lg text-[11px] font-bold text-center flex items-center justify-center gap-1 transition shadow-xs"
+                    >
+                      <span>⬇️ Baixar Imagem</span>
+                    </a>
+                  </div>
+
+                  {/* Criativo 2 */}
+                  <div className="bg-white rounded-xl p-2.5 border border-purple-200 flex flex-col justify-between shadow-2xs">
+                    <div>
+                      <span className="text-[10px] font-black text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md inline-block mb-1">
+                        2. Renda Extra / Empreenda
+                      </span>
+                      <div className="aspect-square rounded-lg overflow-hidden border border-slate-200 mb-2">
+                        <img src={ad2} alt="Criativo 2 Empreenda" className="w-full h-full object-cover" />
+                      </div>
+                    </div>
+                    <a
+                      href={ad2}
+                      download="criativo-2-empreenda.jpg"
+                      className="w-full py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-[11px] font-bold text-center flex items-center justify-center gap-1 transition shadow-xs"
+                    >
+                      <span>⬇️ Baixar Imagem</span>
+                    </a>
+                  </div>
+
+                  {/* Criativo 3 */}
+                  <div className="bg-white rounded-xl p-2.5 border border-rose-200 flex flex-col justify-between shadow-2xs">
+                    <div>
+                      <span className="text-[10px] font-black text-rose-700 bg-rose-50 px-2 py-0.5 rounded-md inline-block mb-1">
+                        3. Fácil no Celular / Canva
+                      </span>
+                      <div className="aspect-square rounded-lg overflow-hidden border border-slate-200 mb-2">
+                        <img src={ad3} alt="Criativo 3 Celular Canva" className="w-full h-full object-cover" />
+                      </div>
+                    </div>
+                    <a
+                      href={ad3}
+                      download="criativo-3-facil-canva.jpg"
+                      className="w-full py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-[11px] font-bold text-center flex items-center justify-center gap-1 transition shadow-xs"
+                    >
+                      <span>⬇️ Baixar Imagem</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
