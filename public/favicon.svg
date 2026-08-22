@@ -1,0 +1,31 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
+  <defs>
+    <linearGradient id='bg' x1='0%' y1='0%' x2='100%' y2='100%'>
+      <stop offset='0%' stop-color='#ec4899'/>
+      <stop offset='50%' stop-color='#f43f5e'/>
+      <stop offset='100%' stop-color='#8b5cf6'/>
+    </linearGradient>
+    <linearGradient id='gold' x1='0%' y1='0%' x2='100%' y2='100%'>
+      <stop offset='0%' stop-color='#fbbf24'/>
+      <stop offset='100%' stop-color='#f59e0b'/>
+    </linearGradient>
+  </defs>
+  <!-- Background Rounded -->
+  <rect width='64' height='64' rx='16' fill='url(#bg)'/>
+  <!-- Gift box body -->
+  <rect x='14' y='28' width='36' height='26' rx='4' fill='#ffffff'/>
+  <!-- Gift box lid -->
+  <rect x='11' y='22' width='42' height='8' rx='3' fill='url(#gold)'/>
+  <!-- Ribbon vertical -->
+  <rect x='28' y='22' width='8' height='32' fill='url(#gold)'/>
+  <!-- Bow left -->
+  <path d='M32 22 C26 14 18 16 22 22 Z' fill='url(#gold)'/>
+  <!-- Bow right -->
+  <path d='M32 22 C38 14 46 16 42 22 Z' fill='url(#gold)'/>
+  <!-- Party sparkles -->
+  <circle cx='12' cy='14' r='2.5' fill='#fef08a'/>
+  <circle cx='52' cy='15' r='3' fill='#38bdf8'/>
+  <circle cx='54' cy='36' r='2' fill='#4ade80'/>
+  <polygon points='22,8 24,13 29,13 25,16 27,21 22,18 17,21 19,16 15,13 20,13' fill='#fbbf24' transform='scale(0.5) translate(14, 2)'/>
+  <polygon points='46,6 48,11 53,11 49,14 51,19 46,16 41,19 43,14 39,11 44,11' fill='#f472b6' transform='scale(0.5) translate(40, 0)'/>
+</svg>
