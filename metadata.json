@@ -1,0 +1,6 @@
+{
+  "name": "Portal Fiesta Mágica - Hub de Entregables Canva & Moldes",
+  "description": "Portal interactivo y organizado de entregables para Kit Fiesta Mágica: acceso directo a +1.500 plantillas de Canva, moldes de cajitas, topos de bolo, 18 bonos exclusivos, videos tutoriales, calculadora de papeles e impressão, y asistente IA para planificación de fiestas infantiles.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
