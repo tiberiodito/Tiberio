@@ -8,6 +8,7 @@ import post1 from '../assets/images/post_table_decor_hd_1787437799423.jpg';
 import post2 from '../assets/images/post_craft_flatlay_hd_1787437817925.jpg';
 import post3 from '../assets/images/post_clara_creator_hd_1787437832862.jpg';
 import bannerFb from '../assets/images/banner_facebook_clara_maya_1787438244860.jpg';
+import avatarClara from '../assets/images/clara_maya_profile_hd_1787439495780.jpg';
 
 interface AdsGalleryModalProps {
   isOpen: boolean;
@@ -15,7 +16,7 @@ interface AdsGalleryModalProps {
 }
 
 export const AdsGalleryModal: React.FC<AdsGalleryModalProps> = ({ isOpen, onClose }) => {
-  const [activeTab, setActiveTab] = useState<'ads' | 'feed' | 'banner'>('ads');
+  const [activeTab, setActiveTab] = useState<'ads' | 'feed' | 'banner' | 'profile'>('ads');
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
@@ -179,7 +180,18 @@ export const AdsGalleryModal: React.FC<AdsGalleryModalProps> = ({ isOpen, onClos
             }`}
           >
             <LayoutTemplate className="w-4 h-4 text-indigo-500" />
-            <span>🖼️ Capa / Banner do Facebook</span>
+            <span>🖼️ Capa / Banner</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('profile')}
+            className={`pb-3 px-3 sm:px-4 font-black text-xs sm:text-sm flex items-center gap-2 border-b-2 transition-all cursor-pointer ${
+              activeTab === 'profile'
+                ? 'border-emerald-600 text-emerald-600'
+                : 'border-transparent text-slate-500 hover:text-slate-800'
+            }`}
+          >
+            <UserCheck className="w-4 h-4 text-emerald-500" />
+            <span>👤 Foto de Perfil (Clara Maya)</span>
           </button>
         </div>
 
@@ -432,6 +444,68 @@ export const AdsGalleryModal: React.FC<AdsGalleryModalProps> = ({ isOpen, onClos
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-600">
                   <span>📐 <strong>Resolução:</strong> Alta Definição (16:9) adaptada perfeitamente para Desktop e Celular no Facebook.</span>
                   <span className="text-emerald-700 font-bold">✨ Pronto para aplicar na página</span>
+                </div>
+              </div>
+            </>
+          )}
+
+          {activeTab === 'profile' && (
+            <>
+              <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex items-start gap-3 text-emerald-900 text-xs sm:text-sm">
+                <UserCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                <div>
+                  <strong>Foto de Perfil Oficial (Avatar Clara Maya):</strong> Retrato em alta definição de uma criadora latina na faixa dos 30 anos, com olhar gentil, sorriso acolhedor e iluminação limpa de estúdio. Ideal para gerar empatia e conexão imediata com o público hispânico.
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-8">
+                {/* Profile Image Preview */}
+                <div className="w-full md:w-5/12 flex flex-col items-center shrink-0">
+                  <div className="relative group w-64 h-64 rounded-full overflow-hidden border-4 border-emerald-100 bg-slate-100 shadow-xl">
+                    <img
+                      src={avatarClara}
+                      alt="Foto de Perfil Clara Maya"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                      <button
+                        onClick={() => setPreviewImage(avatarClara)}
+                        className="px-3.5 py-2 bg-white text-slate-800 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-lg hover:bg-slate-50 transition cursor-pointer"
+                      >
+                        <Eye className="w-4 h-4 text-emerald-600" /> Ver Foto
+                      </button>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => downloadImage(avatarClara, 'foto-perfil-clara-maya.jpg')}
+                    className="w-full max-w-xs mt-5 py-3 px-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white rounded-xl font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                  >
+                    <Download className="w-4 h-4" /> Baixar Foto de Perfil HD (1:1)
+                  </button>
+                </div>
+
+                {/* Profile Strategy Tips */}
+                <div className="w-full md:w-7/12 space-y-4">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-xs font-black px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">
+                      ✨ Alta Confiança & Empatia
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-black text-slate-900">
+                    Por que este perfil converte mais na América Latina?
+                  </h3>
+                  <div className="space-y-2.5 text-xs text-slate-600 leading-relaxed">
+                    <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                      <strong className="text-slate-800">1. Identificação Cultural Imediata:</strong> Traços hispânicos autênticos que se conectam naturalmente com o público de México, Colômbia, Peru, Chile e Argentina.
+                    </div>
+                    <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                      <strong className="text-slate-800">2. Expressão Acolhedora:</strong> O sorriso simpático e o olhar direto para a câmera aumentam em até 30% a taxa de resposta e cliques nos anúncios.
+                    </div>
+                    <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                      <strong className="text-slate-800">3. Cores em Sintonia:</strong> O tom rosê e neutro harmoniza 100% com o banner de capa e com a identidade visual da página de vendas.
+                    </div>
+                  </div>
                 </div>
               </div>
             </>
