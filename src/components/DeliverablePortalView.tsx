@@ -438,7 +438,7 @@ export const DeliverablePortalView: React.FC<DeliverablePortalViewProps> = ({
       {/* 5. VIP Expansions Section (4 Order Bumps - Unlocked with Key or Order Bump) */}
       <VipExpansionsSection
         language={language}
-        isUnlocked={isVipUnlocked}
+        isVipUnlocked={isVipUnlocked}
         onOpenUnlockModal={() => setIsVipModalOpen(true)}
       />
 
@@ -473,8 +473,14 @@ export const DeliverablePortalView: React.FC<DeliverablePortalViewProps> = ({
         isOpen={isVipModalOpen}
         onClose={() => setIsVipModalOpen(false)}
         language={language}
-        onSuccessUnlock={() => {
+        isUnlocked={isVipUnlocked}
+        onUnlockSuccess={() => {
           setIsVipUnlocked(true);
+          try {
+            localStorage.setItem('pfl_vip_unlocked', 'true');
+          } catch {
+            // ignore
+          }
           const el = document.getElementById('vip-expansions-section');
           if (el) {
             setTimeout(() => {

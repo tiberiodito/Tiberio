@@ -56,16 +56,16 @@ export const VipUnlockModal: React.FC<VipUnlockModalProps> = ({
       } catch {
         // Ignore storage error
       }
+      onUnlockSuccess();
       setTimeout(() => {
-        onUnlockSuccess();
         setShowSuccessAnim(false);
         onClose();
-      }, 1200);
+      }, 1400);
     } else {
       setErrorMsg(
         isEs 
-          ? 'Clave incorrecta. Verifica tu correo de compra del Combo VIP o adquiere el acceso a continuación.' 
-          : 'Chave incorreta. Verifique seu e-mail de compra do Combo VIP ou adquira o acesso abaixo.'
+          ? 'Clave incorrecta. Verifica tu correo de confirmación de compra del Combo VIP o adquiere el acceso a continuación.' 
+          : 'Chave incorreta. Verifique seu e-mail de confirmação de compra do Combo VIP ou adquira o acesso abaixo.'
       );
     }
   };
@@ -118,21 +118,24 @@ export const VipUnlockModal: React.FC<VipUnlockModalProps> = ({
               <h3 className="text-lg font-black text-emerald-800">
                 {isEs ? '¡Bienvenida al Club VIP de Clara Maya!' : 'Bem-vinda ao Clube VIP de Clara Maya!'}
               </h3>
-              <p className="text-xs text-slate-600">
-                {isEs ? 'Cargando tus 4 expansiones completas...' : 'Carregando suas 4 expansões completas...'}
+              <p className="text-xs text-slate-600 font-semibold">
+                {isEs ? '¡Tus 4 expansiones completas ya están visibles en la pantalla!' : 'Suas 4 expansões completas já estão visíveis na tela!'}
               </p>
             </div>
           ) : isUnlocked ? (
-            <div className="p-4 bg-emerald-50 border-2 border-emerald-200 rounded-2xl text-center space-y-3">
-              <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
+            <div className="p-5 bg-emerald-50 border-2 border-emerald-300 rounded-2xl text-center space-y-3">
+              <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
               <p className="font-extrabold text-sm text-emerald-900">
-                {isEs ? '¡Ya tienes acceso total a todas las expansiones VIP!' : 'Você já tem acesso total a todas as expansões VIP!'}
+                {isEs ? '¡Tu acceso VIP está completamente activo!' : 'Seu acesso VIP está completamente ativo!'}
+              </p>
+              <p className="text-xs text-emerald-700">
+                {isEs ? 'Los 4 módulos y enlaces ya están visibles justo debajo en tu pantalla.' : 'Os 4 módulos e links já estão visíveis logo abaixo na sua tela.'}
               </p>
               <button
                 onClick={onClose}
                 className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-xl text-sm transition shadow-lg cursor-pointer"
               >
-                {isEs ? 'Ver Mis Archivos VIP' : 'Ver Meus Arquivos VIP'}
+                {isEs ? 'Cerrar y Ver Mis Archivos VIP' : 'Fechar e Ver Meus Arquivos VIP'}
               </button>
             </div>
           ) : (
@@ -150,7 +153,7 @@ export const VipUnlockModal: React.FC<VipUnlockModalProps> = ({
                       setInputKey(e.target.value);
                       if (errorMsg) setErrorMsg('');
                     }}
-                    placeholder={isEs ? 'Ej: claravip100k' : 'Ex: claravip100k'}
+                    placeholder={isEs ? 'Ingresa la clave recibida en tu compra...' : 'Insira a chave recebida na sua compra...'}
                     className="w-full pl-4 pr-12 py-3.5 rounded-2xl border-2 border-slate-300 focus:border-amber-500 focus:ring-4 focus:ring-amber-200 text-slate-900 font-bold text-sm outline-none transition bg-slate-50 focus:bg-white"
                   />
                   <div className="absolute right-3 top-3.5 text-slate-400">
