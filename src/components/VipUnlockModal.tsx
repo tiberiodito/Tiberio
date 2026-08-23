@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { VIP_SECRET_KEY, VIP_COMBO_INFO } from '../data/vipBumpsData';
 import { getCooudCheckoutUrl } from '../data/pricingConfig';
+import vipCoverImg from '../assets/images/vip_combo_cover_1787445671206.jpg';
 
 interface VipUnlockModalProps {
   isOpen: boolean;
@@ -179,22 +180,35 @@ export const VipUnlockModal: React.FC<VipUnlockModalProps> = ({
 
               {/* Upsell / No Key Box */}
               <div className="pt-4 border-t border-slate-200 space-y-3 text-center">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-[11px] font-black">
-                  <Gift className="w-3.5 h-3.5" />
-                  <span>{isEs ? '¿Aún no tienes el Mega Combo VIP?' : 'Ainda não tem o Mega Combo VIP?'}</span>
+                <div className="flex items-center gap-3 p-2.5 bg-amber-50/80 border border-amber-200 rounded-2xl text-left">
+                  <img
+                    src={vipCoverImg}
+                    alt="Mega Combo VIP 4 Expansiones"
+                    className="w-16 h-16 rounded-xl object-cover border border-amber-300 shadow-xs shrink-0"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-200/80 text-amber-900 text-[10px] font-black uppercase">
+                      <Crown className="w-3 h-3 fill-amber-900" />
+                      <span>{isEs ? 'Oferta Exclusiva' : 'Oferta Exclusiva'}</span>
+                    </div>
+                    <p className="text-[11px] text-slate-700 font-medium leading-tight mt-1 line-clamp-2">
+                      {isEs
+                        ? '4 Packs Especiales (Fondos A-Z, +400 Canva, Personajes y Stickers)'
+                        : '4 Packs Especiais (Fundos A-Z, +400 Canva, Personagens e Adesivos)'}
+                    </p>
+                    <div className="text-pink-600 text-xs font-black mt-0.5">
+                      $9.90 USD <span className="text-[10px] text-slate-400 font-normal line-through ml-1">$49.90</span>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-xs text-slate-600">
-                  {isEs
-                    ? 'Adquiere los 4 Packs Especiales (Fondos A-Z, +400 Invitaciones Canva, Personajes y Stickers) en oferta exclusiva por solo '
-                    : 'Adquira os 4 Packs Especiais (Fundos A-Z, +400 Convites Canva, Personagens e Adesivos) em oferta exclusiva por apenas '}
-                  <strong className="text-pink-600 text-sm font-black">$9.90 USD</strong>
-                </p>
+
                 <button
                   onClick={handleBuyVip}
                   className="w-full py-3 px-4 bg-slate-900 hover:bg-slate-800 text-white font-black text-xs rounded-xl transition flex items-center justify-center gap-2 shadow-md cursor-pointer"
                 >
                   <ExternalLink className="w-4 h-4 text-amber-400" />
-                  <span>{isEs ? 'Comprar Combo VIP por $9.90 USD' : 'Comprar Combo VIP por $9.90 USD'}</span>
+                  <span>{isEs ? 'Adquirir Combo VIP por $9.90 USD' : 'Adquirir Combo VIP por $9.90 USD'}</span>
                 </button>
               </div>
             </>

@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { VIP_ORDER_BUMPS, VIP_COMBO_INFO, VipOrderBump, VipLinkItem } from '../data/vipBumpsData';
 import { getCooudCheckoutUrl } from '../data/pricingConfig';
+import vipCoverImg from '../assets/images/vip_combo_cover_1787445671206.jpg';
 
 interface VipExpansionsSectionProps {
   language: 'es' | 'pt';
@@ -62,37 +63,45 @@ export const VipExpansionsSection: React.FC<VipExpansionsSectionProps> = ({
         <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="space-y-3 max-w-3xl">
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-950 text-xs font-black uppercase tracking-wider shadow-lg">
-                <Crown className="w-3.5 h-3.5 fill-slate-950" />
-                {isEs ? 'MÓDULOS VIP & EXPANSIONES' : 'MÓDULOS VIP & EXPANSÕES'}
-              </span>
+          <div className="flex flex-col sm:flex-row items-start gap-5 max-w-3xl">
+            <img
+              src={vipCoverImg}
+              alt="Mega Combo VIP 4 Expansiones"
+              className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border-2 border-amber-400/60 shadow-xl shrink-0"
+              referrerPolicy="no-referrer"
+            />
+            <div className="space-y-2.5">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-950 text-xs font-black uppercase tracking-wider shadow-lg">
+                  <Crown className="w-3.5 h-3.5 fill-slate-950" />
+                  {isEs ? 'MÓDULOS VIP & EXPANSIONES' : 'MÓDULOS VIP & EXPANSÕES'}
+                </span>
 
-              {isVipUnlocked ? (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-black">
-                  <Unlock className="w-3.5 h-3.5 text-emerald-400" />
-                  {isEs ? 'ACCESO DESBLOQUEADO' : 'ACESSO DESBLOQUEADO'}
-                </span>
-              ) : (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-500/20 border border-pink-400/40 text-pink-300 text-xs font-black">
-                  <Lock className="w-3.5 h-3.5 text-pink-400" />
-                  {isEs ? 'EXCLUSIVO CLIENTES VIP' : 'EXCLUSIVO CLIENTES VIP'}
-                </span>
-              )}
+                {isVipUnlocked ? (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-black">
+                    <Unlock className="w-3.5 h-3.5 text-emerald-400" />
+                    {isEs ? 'ACCESO DESBLOQUEADO' : 'ACESSO DESBLOQUEADO'}
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-500/20 border border-pink-400/40 text-pink-300 text-xs font-black">
+                    <Lock className="w-3.5 h-3.5 text-pink-400" />
+                    {isEs ? 'EXCLUSIVO CLIENTES VIP' : 'EXCLUSIVO CLIENTES VIP'}
+                  </span>
+                )}
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white">
+                {isEs 
+                  ? 'Colección de Expansiones & Order Bumps' 
+                  : 'Coleção de Expansões & Order Bumps'}
+              </h2>
+
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                {isEs
+                  ? 'Accede a los 4 Packs Especiales diseñados para multiplicar tus opciones: Biblioteca de Fondos HD (A-Z), +400 Invitaciones Editables en Canva, Personajes en Tendencia y Stickers Decorativos.'
+                  : 'Acesse os 4 Packs Especiais: Biblioteca de Fundos HD (A-Z), +400 Convites Editáveis no Canva, Personagens em Alta e Adesivos Decorativos.'}
+              </p>
             </div>
-
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white">
-              {isEs 
-                ? 'Colección de Expansiones & Order Bumps' 
-                : 'Coleção de Expansões & Order Bumps'}
-            </h2>
-
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              {isEs
-                ? 'Accede a los 4 Packs Especiales diseñados para multiplicar tus opciones: Biblioteca de Fondos HD (A-Z), +400 Invitaciones Editables en Canva, Personajes en Tendencia y Stickers Decorativos.'
-                : 'Acesse os 4 Packs Especiais: Biblioteca de Fundos HD (A-Z), +400 Convites Editáveis no Canva, Personagens em Alta e Adesivos Decorativos.'}
-            </p>
           </div>
 
           {/* Action Trigger in Banner */}
