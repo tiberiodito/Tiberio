@@ -31,6 +31,7 @@ import { DemoLockModal, LockedItemInfo } from './components/DemoLockModal';
 import { ProducerControlModal } from './components/ProducerControlModal';
 import { AdsGalleryModal } from './components/AdsGalleryModal';
 import { getCooudCheckoutUrl } from './data/pricingConfig';
+import { trackInitiateCheckout, trackViewContent } from './utils/pixel';
 
 const checkUrlMode = (): { isPortal: boolean; isDemo: boolean } => {
   if (typeof window === 'undefined') return { isPortal: false, isDemo: false };
@@ -200,11 +201,15 @@ export default function App() {
   const isEs = language === 'es';
 
   const handleOpenBuy = () => {
+    // Dispara evento de InitiateCheckout para o Meta Pixel
+    trackInitiateCheckout(6.9, selectedCurrency);
     // Redireciona diretamente para o checkout oficial da Cooud com UTMs
     window.location.href = getCooudCheckoutUrl();
   };
 
   const handleExploreDeliverable = () => {
+    // Dispara evento de ViewContent
+    trackViewContent('Demostracion de Entregables - Pack Fiesta Lista');
     // Quando o visitante clica no botão "Ver Demonstração / Ver por dentro" na página de vendas, abre em modo demonstração
     handleChangeView('portal', true);
   };

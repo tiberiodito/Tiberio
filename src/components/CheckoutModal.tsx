@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, CheckCircle2, Lock, ShieldCheck, Sparkles, Globe, ArrowRight, CreditCard } from 'lucide-react';
 import { CURRENCY_RATES, PRICING_CONFIG, getCooudCheckoutUrl } from '../data/pricingConfig';
+import { trackInitiateCheckout } from '../utils/pixel';
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -22,6 +23,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
   const handleProceedToCheckout = (e: React.FormEvent) => {
     e.preventDefault();
+    trackInitiateCheckout(6.9, selectedCurrency);
     const checkoutUrl = getCooudCheckoutUrl();
     window.location.href = checkoutUrl;
   };
