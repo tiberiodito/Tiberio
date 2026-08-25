@@ -7,6 +7,10 @@ import ad3 from '../assets/images/ad_creative_canva_mobile_hd_1787432270466.jpg'
 import post1 from '../assets/images/post_table_decor_hd_1787437799423.jpg';
 import post2 from '../assets/images/post_craft_flatlay_hd_1787437817925.jpg';
 import post3 from '../assets/images/post_clara_creator_hd_1787437832862.jpg';
+import post4 from '../assets/images/post_tips_paper_types_1787676914715.jpg';
+import post5 from '../assets/images/post_party_transformation_1787676930902.jpg';
+import post6 from '../assets/images/post_happy_crafter_mom_1787676946489.jpg';
+import post7 from '../assets/images/post_party_kit_collection_1787676961320.jpg';
 import bannerFb from '../assets/images/banner_facebook_clara_maya_1787438244860.jpg';
 import avatarClara from '../assets/images/clara_maya_profile_hd_1787439495780.jpg';
 
@@ -116,7 +120,43 @@ export const AdsGalleryModal: React.FC<AdsGalleryModalProps> = ({ isOpen, onClos
       objective: 'Dar um rosto e voz confiável à página, gerando confiança imediata em quem visita.',
       image: post3,
       filename: 'post-3-hola-soy-clara-maya.jpg',
-      copy: `¡Hola a todas! 👋💖 Soy Clara Maya.\n\nBienvenidos a este espacio dedicado al maravilloso mundo de las fiestas infantiles y la papelería personalizada.\n\nMi misión aquí es simple: ayudarte a ahorrar tiempo, dinero y estrés, para que puedas crear celebraciones inolvidables o incluso emprender tu propio negocio de fiestas desde casa con herramientas sencillas como Canva ✨✂️\n\n🎉 Aquí encontrarás tips, ideas, inspiración y las mejores plantillas para que tus fiestas brillen.\n\n¡Gracias por estar aquí! Sígueme para no perderte ninguna idea mágica 🌸\n\n#FiestaLista #ClaraMaya #PapeleriaDeFiestas #EmprendedorasCreativas #DiseñoEnCanva #FiestasEnCasa`,
+      copy: `¡Hola a todas! 👋💖 Soy Clara Maya.\n\nBienvenidos a este espacio dedicado al maravilloso mundo de las fiestas infantiles y la papelería personalizada.\n\nMi missão aquí es simple: ayudarte a ahorrar tiempo, dinero y estrés, para que puedas crear celebraciones inolvidables o incluso emprender tu propio negocio de fiestas desde casa con herramientas sencillas como Canva ✨✂️\n\n🎉 Aquí encontrarás tips, ideas, inspiración y las mejores plantillas para que tus fiestas brillen.\n\n¡Gracias por estar aquí! Sígueme para no perderte ninguna idea mágica 🌸\n\n#FiestaLista #ClaraMaya #PapeleriaDeFiestas #EmprendedorasCreativas #DiseñoEnCanva #FiestasEnCasa`,
+    },
+    {
+      id: 'post-4',
+      title: 'Post 4: Dica de Papéis para Impressão Perfeita',
+      badge: '💡 Dica Técnica & Salvamento',
+      objective: 'Educar o público sobre os melhores papéis e gerar muitos salvamentos de post (ótimo para alcance orgânico).',
+      image: post4,
+      filename: 'post-4-tipos-de-papel-fiesta.jpg',
+      copy: `📄✂️ ¿Cuál es el mejor papel para imprimir tus kits de fiesta? ¡Guarda este post! 📌✨\n\nSi quieres que tus cajitas y decoraciones queden firmes, con colores vivos y acabado profesional, aquí te dejo mi guía rápida:\n\n1️⃣ Papel Fotográfico Glossy (180g a 230g): ¡Colores súper brillantes e intensos! Ideal para stickers, topos de torta y etiquetas.\n2️⃣ Cartulina Opalina / Mate (180g a 240g): Acabado sedoso y elegante sin reflejos. Perfecto para cajitas Milk, pirámides y dulceros.\n3️⃣ Papel Kraft (180g a 200g): Da un toque rústico y vintage hermoso para temáticas como Granja, Safari o Bosque Encantado.\n\n💡 Tip extra: Usa siempre la configuración de "Alta Calidad" en tu impresora de casa.\n\n¿Cuál de estos papeles es tu favorito para trabajar? ¡Déjamelo en los comentarios! 👇💖\n\n#TipsDePapeleria #ImpresionDeFiestas #PapelOpalina #PapelFotografico #MoldesCanva #FiestasInfantilesDIY`,
+    },
+    {
+      id: 'post-5',
+      title: 'Post 5: Transformação & Mesa dos Sonhos',
+      badge: '🎂 Inspiração & Desejo',
+      objective: 'Mostrar como a papelaria eleva o nível de qualquer comemoração sem gastar muito.',
+      image: post5,
+      filename: 'post-5-transformacion-mesa-dulces.jpg',
+      copy: `🎈✨ No necesitas un presupuesto gigante para tener una fiesta digna de revista 💖🎂\n\nEl secreto está en la armonía: una paleta de colores linda, globitos en tonos pasteles y cajitas personalizadas que llenan la mesa de magia y encanto.\n\n✂️ Con las plantillas listas solo imprimes, cortas y armas mientras disfrutas el proceso.\n\n¿Qué temática te gustaría ver en nuestras próximas plantillas? ¡Te leo en comentarios! 💬👇\n\n#DecoracionDeFiestas #CumpleañosInfantil #MesaDePostres #FiestasPastel #Papeleria3D #FiestaLista`,
+    },
+    {
+      id: 'post-6',
+      title: 'Post 6: Empreendedorismo de Mãe & Realização',
+      badge: '💪 Conexão Emocional & Mães',
+      objective: 'Inspirar mães a terem sua renda extra trabalhando de casa perto dos filhos.',
+      image: post6,
+      filename: 'post-6-mama-emprendedora-fiestas.jpg',
+      copy: `💖 Mamá, creativa y emprendedora desde casa ✂️🏠\n\nMuchas veces pensamos que emprender requiere una gran inversión o máquinas costosas, pero la verdad es que todo comienza con tus ganas de aprender y crear cosas hermosas.\n\nVer la carita de felicidad de un niño al ver su fiesta personalizada no tiene precio... y saber que pudiste generar ingresos desde la mesa de tu casa, ¡mucho menos! 🌸✨\n\nSi tienes el sueño de empezar tu taller de papelería este año, déjame un "✨" en los comentarios y te mando un abrazo lleno de motivación.\n\n¡Sí se puede! 💕\n\n#MamaEmprendedora #NegocioDesdeCasa #PapeleriaCreativa #EmprenderEnFemenino #ArtesanasUnidas #ClaraMaya`,
+    },
+    {
+      id: 'post-7',
+      title: 'Post 7: O que vem no Kit Completo (Demonstração)',
+      badge: '📦 Demonstração de Produto / Oferta',
+      objective: 'Mostrar a variedade de itens inclusos (cajitas, topos, adesivos, tags) prontos para Canva.',
+      image: post7,
+      filename: 'post-7-kit-completo-fiestalista.jpg',
+      copy: `🎁 ¿Todo lo que necesitas para tu fiesta en un solo lugar? ¡Sí, existe! 🎉✂️\n\nCada uno de nuestros kits incluye:\n🧁 Cajitas Milk 3D con lazo\n🔺 Cajitas Pirámide decorativas\n🎂 Topos de torta y toppers de cupcakes\n🏷️ Etiquetas y stickers multiuso\n💌 Banderines personalizados y bolsitas dulceras\n\n📲 Todo 100% editable en Canva gratis desde tu móvil o computadora.\n\n👉 Haz clic en el enlace de nuestra biografía para conocer el Pack Fiesta Lista con precio especial de lanzamiento.\n\n#PackFiestaLista #PlantillasCanva #CumpleañosMagico #KitsImprimibles #DecoracionDIY #FiestasCreativas`,
     },
   ];
 
@@ -169,7 +209,7 @@ export const AdsGalleryModal: React.FC<AdsGalleryModalProps> = ({ isOpen, onClos
             }`}
           >
             <ImageIcon className="w-4 h-4 text-purple-500" />
-            <span>📸 3 Posts do Feed</span>
+            <span>📸 7 Posts do Feed (Instagram)</span>
           </button>
           <button
             onClick={() => setActiveTab('banner')}
