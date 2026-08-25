@@ -24,7 +24,7 @@ export const PRICING_CONFIG = {
 };
 
 // URL Oficial do Checkout na Cooud
-export const OFFICIAL_CHECKOUT_URL = 'https://checkout.cooud.com/01M01DVDKETMAGBBVETNC4Q0XD';
+export const OFFICIAL_CHECKOUT_URL = 'https://checkout.cooud.com/01M0V8EEMTFNMCG0PFART5182K';
 
 /**
  * Retorna o link oficial da Cooud preservando e repassando automaticamente
