@@ -270,37 +270,20 @@ export const DeliverablePortalView: React.FC<DeliverablePortalViewProps> = ({
   };
 
   const handleBackToSales = () => {
-    const customSales = getCustomSalesUrl();
-    if (customSales) {
-      window.location.href = customSales;
-      return;
-    }
-
-    // If user came from partner's site or external link
-    if (typeof document !== 'undefined' && document.referrer && !document.referrer.includes(window.location.host)) {
-      window.location.href = document.referrer;
-      return;
-    }
-
-    // If user has browsing history in this tab
-    if (typeof window !== 'undefined' && window.history.length > 1) {
-      window.history.back();
-      return;
-    }
-
-    // Default fallback to local sales page
     onBackToSales();
   };
 
   const handleUnlockAndBuy = () => {
     setIsLockModalOpen(false);
-    const customSales = getCustomSalesUrl();
-    if (customSales) {
-      window.location.href = customSales;
-      return;
+    const checkoutUrl = getCooudCheckoutUrl();
+    try {
+      const newWin = window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
+      if (!newWin || newWin.closed || typeof newWin.closed === 'undefined') {
+        window.location.href = checkoutUrl;
+      }
+    } catch {
+      window.location.href = checkoutUrl;
     }
-    // Redireciona diretamente para o checkout oficial da Cooud com UTMs
-    window.location.href = getCooudCheckoutUrl();
   };
 
   const handleOpenVipExpansions = () => {
@@ -330,7 +313,15 @@ export const DeliverablePortalView: React.FC<DeliverablePortalViewProps> = ({
             </span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 text-[11px] font-medium text-pink-200">
+          <div className="flex items-center gap-2 text-[11px] font-medium text-pink-200">
+            <button
+              onClick={handleBackToSales}
+              className="inline-flex items-center gap-1 bg-pink-500/30 hover:bg-pink-500/50 text-white border border-pink-300/40 px-2.5 py-0.5 rounded-full cursor-pointer transition text-[11px] font-bold active:scale-95"
+              title={isEs ? 'Volver a la Página de Ventas' : 'Voltar para a Página de Vendas'}
+            >
+              <ArrowLeft className="w-3 h-3" />
+              <span>{isEs ? 'Página de Ventas' : 'Página de Vendas'}</span>
+            </button>
             <button
               onClick={handleOpenVipExpansions}
               className="inline-flex items-center gap-1 bg-amber-400/20 hover:bg-amber-400/40 text-amber-300 border border-amber-400/40 px-2.5 py-0.5 rounded-full cursor-pointer transition text-[11px] font-black"
@@ -389,7 +380,7 @@ export const DeliverablePortalView: React.FC<DeliverablePortalViewProps> = ({
         </div>
       )}
 
-      {/* 1. Header Navigation (Cleaned - No Sales Page button in deliverable) */}
+      {/* 1. Header Navigation */}
       <Header
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
@@ -403,6 +394,7 @@ export const DeliverablePortalView: React.FC<DeliverablePortalViewProps> = ({
         onOpenAIAssistant={handleOpenAIAssistant}
         onOpenDeliveryTool={handleOpenDeliveryTool}
         onOpenPrintableGuide={handleOpenPrintableGuide}
+        onOpenSalesPage={handleBackToSales}
         onOpenVipExpansions={handleOpenVipExpansions}
         isVipUnlocked={isVipUnlocked}
         language={language}

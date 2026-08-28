@@ -6,7 +6,6 @@
 import React, { useState, useEffect } from 'react';
 import { TopAnnouncementBar } from './components/TopAnnouncementBar';
 import { SalesHeader } from './components/SalesHeader';
-import { StickyDeliverableBar } from './components/StickyDeliverableBar';
 import { HeroSection } from './components/HeroSection';
 import { MintHighlightBanner } from './components/MintHighlightBanner';
 import { ThreeThingsSection } from './components/ThreeThingsSection';
@@ -16,7 +15,6 @@ import { RealComparisonSection } from './components/RealComparisonSection';
 import { TestimonialBanner } from './components/TestimonialBanner';
 import { CategoryMarqueeAndGallery } from './components/CategoryMarqueeAndGallery';
 import { ThreeStepsSection } from './components/ThreeStepsSection';
-import { AiToolsShowcaseSection } from './components/AiToolsShowcaseSection';
 import { WaitMoreBanner } from './components/WaitMoreBanner';
 import { TenBonusesSection } from './components/TenBonusesSection';
 import { OfferRecapSection } from './components/OfferRecapSection';
@@ -203,8 +201,15 @@ export default function App() {
   const handleOpenBuy = () => {
     // Dispara evento de InitiateCheckout para o Meta Pixel
     trackInitiateCheckout(6.9, selectedCurrency);
-    // Redireciona diretamente para o checkout oficial da Cooud com UTMs
-    window.location.href = getCooudCheckoutUrl();
+    const checkoutUrl = getCooudCheckoutUrl();
+    try {
+      const newWin = window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
+      if (!newWin || newWin.closed || typeof newWin.closed === 'undefined') {
+        window.location.href = checkoutUrl;
+      }
+    } catch {
+      window.location.href = checkoutUrl;
+    }
   };
 
   const handleExploreDeliverable = () => {
@@ -293,34 +298,24 @@ export default function App() {
 
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#fef7f9] text-slate-800 font-outfit selection:bg-pink-300 selection:text-pink-900 pb-20">
-      {/* 1. Top Announcement Bar (Barra Vermelha 1: Desconto + Escassez + Contador Fixo) */}
+      {/* 1. Top Announcement Bar (Barra Rosa degradê: OFERTA FLASH + Últimos 17 accesos + Contador) */}
       <TopAnnouncementBar
         language={language}
         isProducerUnlocked={isProducerUnlocked}
         onOpenProducerModal={() => setIsProducerModalOpen(true)}
       />
 
-      {/* 1.1 Sales Header (Barra Branca: Logo + Pack Fiesta Lista + Oferta) - Rola para cima */}
+      {/* 1.1 Sales Header (Barra Branca Limpa: Logo + MEGA PACK DIGITAL + Ver Entregable en Vivo + ACCEDER POR $6.90!) */}
       <SalesHeader
         language={language}
-      />
-
-      {/* 1.2 Sticky Deliverable Bar (Barra Vermelha 2: Botão de Destaque Ver Entregables em Vivo Fixo) */}
-      <StickyDeliverableBar
-        language={language}
         onExploreDeliverable={handleExploreDeliverable}
+        onBuyClick={handleOpenBuy}
       />
 
       {/* 2. Hero Section com Botão de Destaque para Espiar o Entregável */}
       <HeroSection
         onBuyClick={handleOpenBuy}
         onExploreDeliverable={handleExploreDeliverable}
-        language={language}
-      />
-
-      {/* 2.1 ⭐ FERRAMENTAS DE IA E CALCULADORAS NO TOPO (Diferencial Imediato) */}
-      <AiToolsShowcaseSection
-        onOpenTool={handleOpenTool}
         language={language}
       />
 

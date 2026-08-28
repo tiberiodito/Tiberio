@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, Sparkles, Globe } from 'lucide-react';
-import { CURRENCY_RATES, PRICING_CONFIG } from '../data/pricingConfig';
-import { UrgencyCountdownWidget } from './UrgencyCountdownWidget';
+import { ShoppingBag, Globe, Clock } from 'lucide-react';
+import { CURRENCY_RATES, getCooudCheckoutUrl } from '../data/pricingConfig';
 
 interface FloatingBottomBarProps {
   onBuyClick: () => void;
@@ -13,68 +12,127 @@ export const FloatingBottomBar: React.FC<FloatingBottomBarProps> = ({
   selectedCurrency,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [timeLeft, setTimeLeft] = useState({ minutes: 14, seconds: 41 });
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 400) {
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || window.scrollY || 0;
+      if (scrollY > 70) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
       }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    // Check initial position on mount
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('touchmove', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('touchmove', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 };
+        } else if (prev.minutes > 0) {
+          return { minutes: prev.minutes - 1, seconds: 59 };
+        } else {
+          return { minutes: 14, seconds: 41 };
+        }
+      });
+    }, 1000);
+    return () => clearInterval(timer);
   }, []);
 
   if (!isVisible) return null;
 
   const currentRate = CURRENCY_RATES[selectedCurrency] || CURRENCY_RATES.USD;
+  const checkoutUrl = getCooudCheckoutUrl();
+  const formatNumber = (num: number) => num.toString().padStart(2, '0');
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t-2 border-pink-200 py-2.5 sm:py-3 px-3 sm:px-4 shadow-2xl transition-all duration-300 transform translate-y-0">
-      <div className="max-w-4xl mx-auto flex items-center justify-between gap-2 sm:gap-3">
+    <div className="fixed bottom-0 left-0 right-0 w-full z-50 bg-white/98 backdrop-blur-md border-t border-pink-100 py-2 sm:py-2.5 px-3 sm:px-6 shadow-[0_-6px_25px_rgba(0,0,0,0.12)] transition-all duration-300 animate-in fade-in slide-in-from-bottom-3 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+      <div className="max-w-6xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
         
-        {/* Left text on Desktop */}
-        <div className="hidden sm:flex items-center gap-2.5">
-          <div>
-            <div className="flex items-center gap-1.5">
-              <span className="font-fredoka text-[11px] text-pink-600 font-extrabold uppercase block">
-                OFERTA {PRICING_CONFIG.discountPercentage}% OFF SOLO HOY
+        {/* 1. Left: Oferta + Pago en tu moneda + PACK FIESTA LISTA */}
+        <div className="hidden lg:flex flex-col text-left shrink-0">
+          <div className="flex items-center gap-2 mb-0.5">
+            <span className="text-[#ff007f] font-black text-xs tracking-tight uppercase">
+              OFERTA 81% OFF SOLO HOY
+            </span>
+            <span className="bg-[#dcfce7] text-[#166534] text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border border-[#bbf7d0]">
+              <Globe className="w-3 h-3 text-[#16a34a]" />
+              <span>Pago en tu moneda</span>
+            </span>
+          </div>
+          <h4 className="font-fredoka font-black text-slate-900 text-sm tracking-wide">
+            PACK FIESTA LISTA + 10 REGALOS
+          </h4>
+        </div>
+
+        {/* 2. Middle: OFERTA TERMINA EN: 14:41 (Pill suave) */}
+        <div className="hidden md:flex items-center bg-[#fff1f5] border border-[#ffe4e6] rounded-full px-3.5 py-1 gap-2 shadow-2xs">
+          <Clock className="w-3.5 h-3.5 text-[#ff007f]" />
+          <span className="text-[#e11d48] font-black text-[11px] uppercase tracking-wider">
+            OFERTA TERMINA EN:
+          </span>
+          <span className="bg-white text-[#be123c] font-mono font-black text-xs px-2 py-0.5 rounded shadow-2xs border border-pink-100">
+            {formatNumber(timeLeft.minutes)}:{formatNumber(timeLeft.seconds)}
+          </span>
+        </div>
+
+        {/* 3. Right: Preço + Botão COMPRAR EN MI MONEDA */}
+        <div className="flex items-center justify-between w-full md:w-auto gap-3 sm:gap-4 ml-auto">
+          
+          {/* Price breakdown */}
+          <div className="flex flex-col items-end shrink-0">
+            <div className="flex items-baseline gap-1 sm:gap-1.5">
+              <span className="text-slate-400 line-through text-xs font-semibold">
+                {currentRate.symbol} {currentRate.regular}
               </span>
-              <span className="text-[10px] font-extrabold text-emerald-700 bg-emerald-100 px-2 py-0.2 rounded-full flex items-center gap-0.5">
-                <Globe className="w-3 h-3" /> Pago en tu moneda
+              <span className="font-fredoka font-black text-xl sm:text-2xl text-[#ff007f] leading-none">
+                {currentRate.symbol} {currentRate.promo}
               </span>
             </div>
-            <h4 className="font-fredoka font-extrabold text-slate-900 text-sm leading-tight">
-              PACK FIESTA LISTA + 10 REGALOS
-            </h4>
-          </div>
-          <UrgencyCountdownWidget variant="compact" />
-        </div>
-
-        {/* Price & CTA Button */}
-        <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end">
-          <div className="text-left sm:text-right">
-            <span className="line-through text-slate-400 text-xs font-bold block sm:inline mr-1">
-              {currentRate.symbol} {currentRate.regular}
-            </span>
-            <span className="font-fredoka text-lg sm:text-2xl font-extrabold text-[#ff1493] block sm:inline">
-              {currentRate.symbol} {currentRate.promo} <span className="text-xs text-slate-600">({selectedCurrency})</span>
-            </span>
-            <span className="text-[10px] text-emerald-600 font-bold block sm:hidden">
-              🌎 Pagamento em {selectedCurrency}
-            </span>
+            <div className="flex items-center gap-1 mt-0.5">
+              <span className="text-[10px] text-slate-500 font-bold uppercase">
+                ({selectedCurrency})
+              </span>
+              {/* Mobile badge for local currency */}
+              <span className="lg:hidden bg-[#dcfce7] text-[#166534] text-[9px] font-bold px-1.5 py-0.2 rounded-full flex items-center gap-0.5">
+                <Globe className="w-2.5 h-2.5 text-[#16a34a]" />
+                <span>Pago local</span>
+              </span>
+            </div>
           </div>
 
-          <button
-            onClick={onBuyClick}
-            className="bg-gradient-to-r from-[#ff1493] to-[#ff40a1] hover:from-[#e0007d] hover:to-[#e6328f] text-white font-fredoka font-extrabold text-xs sm:text-base px-4 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg shadow-pink-300/80 cursor-pointer flex items-center gap-1.5 border border-white transform hover:scale-105 transition-transform shrink-0"
+          {/* Big Pink CTA Button */}
+          <a
+            href={checkoutUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              if (onBuyClick) {
+                onBuyClick();
+              }
+            }}
+            className="bg-[#ff007f] hover:bg-[#e60067] active:bg-[#cc0066] text-white font-fredoka font-black text-xs sm:text-sm px-4 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-md shadow-pink-500/25 hover:shadow-lg hover:shadow-pink-500/35 transition-all flex items-center justify-center gap-2 uppercase tracking-wide whitespace-nowrap cursor-pointer transform hover:scale-[1.02] active:scale-[0.98]"
+            title="Comprar en mi moneda"
           >
-            <ShoppingBag className="w-4 h-4" />
+            <ShoppingBag className="w-4 h-4 text-white fill-white shrink-0" />
             <span>COMPRAR EN MI MONEDA</span>
-          </button>
+          </a>
+
         </div>
+
       </div>
     </div>
   );
 };
+

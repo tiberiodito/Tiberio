@@ -130,7 +130,7 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
               <p className="text-[11px] text-slate-500 font-bold hidden md:flex items-center gap-1">
                 <span className="text-amber-500">👑</span>
-                {isEs ? 'Portal de Entregables VIP & 18 Bonos' : 'Portal de Entregáveis VIP & 18 Bônus'}
+                {isEs ? 'Portal de Entregables VIP & 10 Bonos' : 'Portal de Entregáveis VIP & 10 Bônus'}
               </p>
             </div>
           </div>
