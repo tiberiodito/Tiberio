@@ -23,6 +23,7 @@ import { CheckoutSection } from './components/CheckoutSection';
 import { CustomerReviewsChatSection } from './components/CustomerReviewsChatSection';
 import { FAQSection } from './components/FAQSection';
 import { FloatingBottomBar } from './components/FloatingBottomBar';
+import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 import { CheckoutModal } from './components/CheckoutModal';
 import { DeliverablePortalView } from './components/DeliverablePortalView';
 import { DemoLockModal, LockedItemInfo } from './components/DemoLockModal';
@@ -379,20 +380,8 @@ export default function App() {
         <p>Página de alta conversión diseñada con fidelidad total al diseño original.</p>
         <p className="text-[10px] text-slate-400">Canva® es una marca registrada. Este kit incluye archivos compatibles 100% gratuitos.</p>
         
-        {/* Link Discreto de Acesso do Produtor & Criativos */}
-        <div className="pt-2 flex items-center justify-center gap-4">
-          <button
-            type="button"
-            onClick={() => setIsAdsModalOpen(true)}
-            className="text-[11px] text-pink-500 hover:text-pink-700 transition inline-flex items-center gap-1 cursor-pointer font-bold underline decoration-dotted"
-            title="Ver e Baixar Criativos para Facebook Ads"
-          >
-            <span>🎨</span>
-            <span>Criativos Facebook Ads</span>
-          </button>
-
-          <span className="text-slate-300">|</span>
-
+        {/* Link Discreto de Acesso do Produtor */}
+        <div className="pt-2 flex items-center justify-center">
           <button
             type="button"
             onClick={() => setIsProducerModalOpen(true)}
@@ -409,6 +398,12 @@ export default function App() {
       <FloatingBottomBar
         onBuyClick={handleOpenBuy}
         selectedCurrency={selectedCurrency}
+      />
+
+      {/* Floating WhatsApp Support Button */}
+      <WhatsAppFloatingButton
+        phoneNumber="5581991657711"
+        language={language}
       />
 
       {/* Interactive Checkout Modal */}

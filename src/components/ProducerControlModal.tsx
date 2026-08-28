@@ -203,6 +203,66 @@ export const ProducerControlModal: React.FC<ProducerControlModalProps> = ({
               </button>
             </div>
 
+            {/* Quick Banner: Criativos para Facebook Ads */}
+            <div className="p-3.5 bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 rounded-2xl text-white shadow-md flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-xs flex items-center justify-center text-lg shrink-0">
+                  🎨
+                </div>
+                <div>
+                  <h4 className="font-fredoka font-black text-sm text-white leading-tight">
+                    Criativos para Anúncios do Facebook
+                  </h4>
+                  <p className="text-[11px] text-pink-100 font-medium">
+                    3 criativos validados em alta resolução + copies prontas
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  if (onOpenAdsGallery) {
+                    onOpenAdsGallery();
+                  } else {
+                    window.location.href = '/?ads=1';
+                  }
+                }}
+                className="shrink-0 bg-white text-pink-600 hover:bg-pink-50 font-black text-xs px-3.5 py-2 rounded-xl shadow-xs transition hover:scale-105 cursor-pointer font-fredoka uppercase tracking-wide"
+              >
+                Abrir Galeria
+              </button>
+            </div>
+
+            {/* Quick Info: WhatsApp de Suporte Configurado */}
+            <div className="p-3.5 bg-emerald-50 rounded-2xl border border-emerald-200 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-lg shrink-0 shadow-xs">
+                  💬
+                </div>
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <h4 className="font-fredoka font-black text-xs text-emerald-950 uppercase">
+                      WhatsApp de Suporte Ativo
+                    </h4>
+                    <span className="bg-emerald-200 text-emerald-800 text-[10px] font-extrabold px-1.5 py-0.2 rounded-full">
+                      ONLINE
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-emerald-800 font-medium">
+                    Número: <strong className="font-mono text-emerald-900">+55 (81) 99165-7711</strong>
+                  </p>
+                </div>
+              </div>
+              <a
+                href="https://wa.me/5581991657711?text=Ol%C3%A1%21%20Teste%20do%20bot%C3%A3o%20de%20WhatsApp%20da%20p%C3%A1gina%20Pack%20Fiesta%20Lista."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] px-3 py-1.5 rounded-xl shadow-xs transition cursor-pointer"
+              >
+                Testar Link
+              </a>
+            </div>
+
             {/* Section 1: Alternador de Idioma Ativo */}
             <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
               <label className="block text-xs font-black text-slate-800 uppercase tracking-wider mb-2 flex items-center gap-1.5">

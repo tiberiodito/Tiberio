@@ -33,14 +33,16 @@ export const SalesHeader: React.FC<SalesHeaderProps> = ({
           
           <div className="min-w-0">
             <h1 className="font-fredoka font-black text-sm sm:text-base lg:text-lg text-[#ff3385] leading-tight tracking-wide truncate uppercase">
-              MEGA PACK DIGITAL
+              PACK FIESTA LISTA
             </h1>
             
             {/* Subtítulo clean com especificações */}
-            <p className="text-[10px] sm:text-xs text-slate-500 font-medium truncate">
-              {isEs 
-                ? '+1.500 Plantillas Canva + 10 Mega Bonos + 4 Herramientas' 
-                : '+1.500 Modelos Canva + 10 Mega Bônus + 4 Ferramentas'}
+            <p className="text-[10px] sm:text-xs font-bold truncate flex items-center gap-1">
+              <span className="text-[#ff007f]">{isEs ? '+1.500 Plantillas' : '+1.500 Modelos'}</span>
+              <span className="text-slate-300">•</span>
+              <span className="text-[#9333ea]">{isEs ? '+10 Bonos' : '+10 Bônus'}</span>
+              <span className="text-slate-300">•</span>
+              <span className="text-[#0d9488]">{isEs ? '+6 Herramientas' : '+6 Ferramentas'}</span>
             </p>
           </div>
         </div>
