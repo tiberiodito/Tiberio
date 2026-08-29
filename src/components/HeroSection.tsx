@@ -107,42 +107,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* 🌟 BOTÃO DE DESTAQUE: VER O ENTREGÁVEL AO VIVO */}
-        <div className="max-w-2xl mx-auto my-6 p-1 rounded-3xl bg-gradient-to-r from-pink-500 via-purple-500 to-amber-400 shadow-xl shadow-pink-500/20 hover:shadow-pink-500/30 transition-all duration-300 transform hover:scale-[1.02]">
-          <button
-            onClick={onExploreDeliverable}
-            className="w-full py-4 px-5 rounded-2xl bg-white/95 hover:bg-white text-slate-900 flex flex-col sm:flex-row items-center justify-between gap-3 transition cursor-pointer text-left border border-white"
-          >
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center text-white shrink-0 shadow-md">
-                <MonitorPlay className="w-6 h-6 animate-pulse" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="bg-emerald-500 text-white text-[10px] font-black uppercase px-2 py-0.5 rounded-full flex items-center gap-1 shadow-xs">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                    {isEs ? 'DEMO EN VIVO' : 'DEMO AO VIVO'}
-                  </span>
-                  <span className="text-xs font-bold text-pink-600">{isEs ? '100% Interactivo' : '100% Interativo'}</span>
-                </div>
-                <p className="text-sm sm:text-base font-extrabold font-fredoka text-slate-900 mt-0.5">
-                  {isEs ? '👉 Ver el Portal Entregable por Dentro (Espiar)' : '👉 Ver o Portal Entregável por Dentro (Espiar)'}
-                </p>
-                <p className="text-[11px] text-slate-500 font-medium">
-                  {isEs ? 'Prueba la IA, la calculadora de precios y los catálogos ahora mismo' : 'Teste a IA, a calculadora de preços e os catálogos agora mesmo'}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-1.5 bg-pink-50 text-pink-700 border border-pink-200 px-4 py-2 rounded-xl text-xs font-extrabold shrink-0 hover:bg-pink-100 transition shadow-xs">
-              <span>{isEs ? 'ESPIAR AHORA' : 'ESPIAR AGORA'}</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </div>
-          </button>
-        </div>
-
         {/* Hero Callout Box */}
-        <div className="bg-white rounded-2xl p-5 sm:p-7 shadow-xl border-2 border-pink-200 text-left relative overflow-hidden">
+        <div className="bg-white rounded-2xl p-5 sm:p-7 shadow-xl border-2 border-pink-200 text-left relative overflow-hidden mt-6">
           <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-pink-100 rounded-full opacity-50 blur-xl pointer-events-none" />
           <div className="flex items-start gap-3 sm:gap-4">
             <div className="p-3 bg-pink-100 text-pink-600 rounded-2xl shrink-0 mt-1 shadow-xs">

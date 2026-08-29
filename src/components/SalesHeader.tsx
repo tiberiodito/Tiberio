@@ -1,5 +1,5 @@
 import React from 'react';
-import { Eye, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import logoImg from '../assets/images/pack_fiesta_logo_vector_1787315893546.jpg';
 import { getCooudCheckoutUrl } from '../data/pricingConfig';
 
@@ -47,27 +47,9 @@ export const SalesHeader: React.FC<SalesHeaderProps> = ({
           </div>
         </div>
 
-        {/* Right Buttons: Exatamente como no modelo de referência */}
+        {/* Right CTA: Único botão de conversão direta */}
         <div className="flex items-center gap-2 shrink-0">
-          {/* Botão 1: Ver Entregable en Vivo (Pill com borda rosa e texto rosa) */}
-          {onExploreDeliverable && (
-            <button
-              type="button"
-              onClick={onExploreDeliverable}
-              className="px-2.5 sm:px-4 py-1.5 rounded-full border border-pink-400/80 hover:border-pink-500 bg-pink-50/40 hover:bg-pink-50 text-[#d81b60] hover:text-[#ad1457] font-semibold text-xs sm:text-sm flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs active:scale-95 whitespace-nowrap"
-              title={isEs ? 'Ver entregable en vivo' : 'Ver entregável ao vivo'}
-            >
-              <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#d81b60]" />
-              <span className="hidden xs:inline">
-                {isEs ? 'Ver Entregable en Vivo' : 'Ver Entregável ao Vivo'}
-              </span>
-              <span className="xs:hidden">
-                {isEs ? 'Ver Entregable' : 'Ver Entregável'}
-              </span>
-            </button>
-          )}
-
-          {/* Botão 2: ACCEDER POR $6.90! (Verde chamativo com link direto e clique) */}
+          {/* Botão: ACCEDER POR $6.90! (Verde chamativo com link direto e clique) */}
           <a
             href={getCooudCheckoutUrl()}
             target="_blank"
@@ -77,7 +59,7 @@ export const SalesHeader: React.FC<SalesHeaderProps> = ({
                 onBuyClick();
               }
             }}
-            className="px-3 sm:px-5 py-1.5 rounded-full bg-[#00c853] hover:bg-[#00b248] text-white font-black text-xs sm:text-sm flex items-center gap-1.5 transition-all cursor-pointer shadow-sm hover:shadow-md active:scale-95 whitespace-nowrap tracking-wide"
+            className="px-3.5 sm:px-6 py-1.5 sm:py-2 rounded-full bg-[#00c853] hover:bg-[#00b248] active:scale-95 text-white font-black text-xs sm:text-sm flex items-center gap-1.5 transition-all cursor-pointer shadow-md hover:shadow-lg whitespace-nowrap tracking-wide uppercase font-fredoka"
             title={isEs ? 'Acceder ahora a la oferta' : 'Acessar agora a oferta'}
           >
             <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white fill-white animate-pulse" />

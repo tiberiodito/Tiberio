@@ -1,6 +1,7 @@
 import React from 'react';
-import { Sparkles, Camera, Check, Heart } from 'lucide-react';
+import { Sparkles, Camera, Check, Heart, ArrowRight } from 'lucide-react';
 import { CATEGORY_TAGS } from '../data/kitData';
+import { getCooudCheckoutUrl } from '../data/pricingConfig';
 
 export interface ShowcaseCard {
   id: string;
@@ -161,7 +162,11 @@ const CardItem: React.FC<CardItemProps> = ({ card }) => {
   );
 };
 
-export const CategoryMarqueeAndGallery: React.FC = () => {
+interface CategoryMarqueeAndGalleryProps {
+  onBuyClick?: () => void;
+}
+
+export const CategoryMarqueeAndGallery: React.FC<CategoryMarqueeAndGalleryProps> = ({ onBuyClick }) => {
   return (
     <section className="bg-gradient-to-b from-[#fff0f5] via-[#fef7f9] to-[#fff0f5] py-14 overflow-hidden relative">
       
@@ -222,16 +227,38 @@ export const CategoryMarqueeAndGallery: React.FC = () => {
 
       </div>
 
-      {/* 4. Bottom Callout Banner */}
-      <div className="max-w-3xl mx-auto px-4 mt-12">
+      {/* 4. Bottom Callout Banner + BOTÃO 2 DE COMPRA */}
+      <div className="max-w-3xl mx-auto px-4 mt-10 space-y-6 text-center">
         <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-xl border-2 border-pink-200 text-center relative overflow-hidden">
           <div className="inline-flex items-center gap-2 text-pink-600 font-fredoka text-base sm:text-lg font-extrabold uppercase mb-1">
             <Sparkles className="w-5 h-5 text-amber-400 fill-amber-400" />
-            <span>¡TODO ESTO Y MÁS DE 10.000 PLANTILLAS LISTAS!</span>
+            <span>¡TODO ESTO Y MÁS DE 1.500 PLANTILLAS LISTAS!</span>
             <Sparkles className="w-5 h-5 text-amber-400 fill-amber-400" />
           </div>
           <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-medium">
             Puedes imprimir en cualquier impresora común de casa o llevar el PDF a tu imprenta local. Las plantillas vienen con medidas exactas y líneas de corte.
+          </p>
+        </div>
+
+        {/* 🎯 BOTÃO 2: Logo abaixo da Apresentação dos 1.500 Moldes */}
+        <div className="pt-1">
+          <a
+            href={getCooudCheckoutUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              if (onBuyClick) {
+                e.preventDefault();
+                onBuyClick();
+              }
+            }}
+            className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 hover:from-pink-600 hover:to-rose-600 text-white font-fredoka font-black text-base sm:text-lg uppercase tracking-wider shadow-[0_8px_25px_rgba(244,63,94,0.45)] hover:shadow-[0_12px_30px_rgba(244,63,94,0.6)] transform hover:scale-[1.03] active:scale-95 transition-all duration-300 cursor-pointer border-2 border-white/40"
+          >
+            <span>¡QUIERO TODAS LAS +1.500 PLANTILLAS POR $6.90!</span>
+            <ArrowRight className="w-5 h-5 animate-pulse" />
+          </a>
+          <p className="text-[11px] text-slate-500 font-medium mt-2">
+            ⚡ Acceso inmediato a tu correo • Descarga ilimitada y de por vida
           </p>
         </div>
       </div>

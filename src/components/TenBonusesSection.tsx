@@ -1,9 +1,13 @@
 import React from 'react';
 import { BONUSES } from '../data/kitData';
-import { Sparkles, Gift } from 'lucide-react';
-import { PRICING_CONFIG } from '../data/pricingConfig';
+import { Sparkles, Gift, ArrowRight } from 'lucide-react';
+import { PRICING_CONFIG, getCooudCheckoutUrl } from '../data/pricingConfig';
 
-export const TenBonusesSection: React.FC = () => {
+interface TenBonusesSectionProps {
+  onBuyClick?: () => void;
+}
+
+export const TenBonusesSection: React.FC<TenBonusesSectionProps> = ({ onBuyClick }) => {
   return (
     <section className="bg-[#a2ded6] py-14 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
@@ -61,6 +65,28 @@ export const TenBonusesSection: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* 🎯 BOTÃO 3: Stack de Bônus (+10 Bonos Gratis) */}
+        <div className="mt-12 text-center max-w-2xl mx-auto space-y-3">
+          <a
+            href={getCooudCheckoutUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              if (onBuyClick) {
+                e.preventDefault();
+                onBuyClick();
+              }
+            }}
+            className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-full bg-slate-900 hover:bg-slate-800 text-yellow-300 font-fredoka font-black text-base sm:text-lg uppercase tracking-wider shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_35px_rgba(0,0,0,0.4)] transform hover:scale-[1.03] active:scale-95 transition-all duration-300 cursor-pointer border-2 border-yellow-400"
+          >
+            <span>🎁 ¡QUIERO EL PACK + LOS 10 BONOS POR $6.90!</span>
+            <ArrowRight className="w-5 h-5 text-yellow-300 animate-pulse" />
+          </a>
+          <p className="text-xs sm:text-sm text-teal-950 font-bold">
+            🔒 Pago 100% seguro • Garantía incondicional de 7 días • Acceso de por vida
+          </p>
         </div>
       </div>
     </section>

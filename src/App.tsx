@@ -342,7 +342,7 @@ export default function App() {
       <TestimonialBanner />
 
       {/* 9. Marquee & Gallery Showcase */}
-      <CategoryMarqueeAndGallery />
+      <CategoryMarqueeAndGallery onBuyClick={handleOpenBuy} />
 
       {/* 10. 3 Simple Steps Section */}
       <ThreeStepsSection />
@@ -351,7 +351,7 @@ export default function App() {
       <WaitMoreBanner />
 
       {/* 13. 10 Free Bonuses Section */}
-      <TenBonusesSection />
+      <TenBonusesSection onBuyClick={handleOpenBuy} />
 
       {/* 14. Offer Value Recap */}
       <OfferRecapSection />
